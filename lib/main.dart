@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:kh_online_shop_app_flutter/screens/base_pages/base_page.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(const MyApp());
 }
 
