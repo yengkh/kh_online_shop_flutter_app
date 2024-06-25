@@ -5,7 +5,6 @@ class BttomNavIconsList {
     Icons.home,
     Icons.shopping_cart,
     Icons.favorite,
-    Icons.receipt,
     Icons.settings,
   ];
 }

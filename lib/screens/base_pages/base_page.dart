@@ -18,12 +18,14 @@ class _BasePageState extends State<BasePage> {
     return Scaffold(
       body: BodyPage.body[_currentIndex],
       bottomNavigationBar: AnimatedBottomNavigationBar(
+        inactiveColor: Colors.grey,
         activeColor: Colors.pink,
         elevation: 0.0,
         icons: BttomNavIconsList.iconList,
         activeIndex: _currentIndex,
         gapWidth: 1.0,
         iconSize: 25.0,
+        splashColor: Colors.grey,
         onTap: (index) => setState(() => _currentIndex = index),
       ),
     );
