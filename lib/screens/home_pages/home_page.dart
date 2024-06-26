@@ -4,6 +4,7 @@ import 'package:kh_online_shop_app_flutter/widgets/home_page/home_page_app_bar.d
 import 'package:kh_online_shop_app_flutter/widgets/home_page/home_page_brand_list.dart';
 import 'package:kh_online_shop_app_flutter/widgets/home_page/home_page_items.dart';
 import 'package:kh_online_shop_app_flutter/widgets/home_page/home_page_top_products.dart';
+import 'package:kh_online_shop_app_flutter/widgets/home_page/icon_with_text_widget.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -25,25 +26,29 @@ class _HomePageState extends State<HomePage> {
         color: Colors.pink.shade300,
         child: const SingleChildScrollView(
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               SizedBox(
-                height: 15.0,
+                height: 20.0,
               ),
               HomePageCarocelSlider(),
-              SizedBox(
-                height: 15.0,
+              IconWithTextWidget(
+                iconData: Icons.star_rounded,
+                title: "Popular Brands",
               ),
               HomePageBrandList(),
-              SizedBox(
-                height: 15.0,
+              IconWithTextWidget(
+                iconData: Icons.list_alt_rounded,
+                title: "Product Categories",
               ),
-              HomePageBrandList(),
-              SizedBox(
-                height: 15.0,
+              IconWithTextWidget(
+                iconData: Icons.star_rounded,
+                title: "Top Products Of The Month",
               ),
               HomePageTopProducts(),
-              SizedBox(
-                height: 15.0,
+              IconWithTextWidget(
+                iconData: Icons.search_rounded,
+                title: "Explore",
               ),
               HomePageItems(),
               SizedBox(

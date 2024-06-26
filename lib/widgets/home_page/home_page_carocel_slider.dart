@@ -44,7 +44,10 @@ class _HomePageCarocelSliderState extends State<HomePageCarocelSlider> {
       return const SizedBox(
         height: 180.0,
         child: Center(
-          child: CircularProgressIndicator(),
+          child: CircularProgressIndicator(
+            color: Colors.grey,
+            strokeWidth: 2.0,
+          ),
         ),
       );
     } else if (_error != null) {
@@ -94,15 +97,18 @@ class _HomePageCarocelSliderState extends State<HomePageCarocelSlider> {
           ),
           Positioned(
             bottom: 10.0,
-            left: MediaQuery.of(context).size.width / 2 - 50.0,
-            child: AnimatedSmoothIndicator(
-              effect: const ExpandingDotsEffect(
-                activeDotColor: Colors.pink,
-                dotHeight: 4.0,
-                dotWidth: 10.0,
+            left: 0.0,
+            right: 0.0,
+            child: Center(
+              child: AnimatedSmoothIndicator(
+                effect: const ExpandingDotsEffect(
+                  activeDotColor: Colors.pink,
+                  dotHeight: 4.0,
+                  dotWidth: 10.0,
+                ),
+                activeIndex: _pageActiveController,
+                count: _images!.length,
               ),
-              activeIndex: _pageActiveController,
-              count: _images!.length,
             ),
           ),
         ],
