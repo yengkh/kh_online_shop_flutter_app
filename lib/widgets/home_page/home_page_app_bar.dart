@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:kh_online_shop_app_flutter/material/icon_button/icon_button.dart';
+import 'package:kh_online_shop_app_flutter/screens/profile_page/profile.dart';
+import 'package:kh_online_shop_app_flutter/widgets/home_page/user_profile_widget.dart';
 
 class HomePageAppBar extends StatelessWidget {
   const HomePageAppBar({
@@ -9,8 +12,13 @@ class HomePageAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      backgroundColor: Colors.white,
-      title: const Text("Hello"),
+      leading: UserProfileWidget(
+        onTapEvent: () {
+          Get.to(
+            () => const UserProfile(),
+          );
+        },
+      ),
       actions: [
         IconButtonWidget(
           onPreessEvent: () {},

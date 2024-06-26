@@ -23,13 +23,17 @@ class IconWithTextWidget extends StatelessWidget {
           Icon(
             iconData,
             size: 25.0,
+            color: Colors.grey.shade700,
           ),
           const SizedBox(
             width: 8.0,
           ),
           Text(
             title,
-            style: const TextStyle(fontSize: 16.0),
+            style: TextStyle(
+              fontSize: 16.0,
+              color: Colors.grey.shade700,
+            ),
           ),
         ],
       ),

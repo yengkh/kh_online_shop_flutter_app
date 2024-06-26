@@ -59,7 +59,7 @@ class _HomePageCarocelSliderState extends State<HomePageCarocelSlider> {
         children: [
           GlowingOverscrollIndicator(
             axisDirection: AxisDirection.right,
-            color: Colors.pink.shade300,
+            color: Colors.grey.shade400,
             child: CarouselSlider(
               options: CarouselOptions(
                 enableInfiniteScroll: false,

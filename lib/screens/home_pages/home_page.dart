@@ -5,6 +5,7 @@ import 'package:kh_online_shop_app_flutter/widgets/home_page/home_page_brand_lis
 import 'package:kh_online_shop_app_flutter/widgets/home_page/home_page_items.dart';
 import 'package:kh_online_shop_app_flutter/widgets/home_page/home_page_top_products.dart';
 import 'package:kh_online_shop_app_flutter/widgets/home_page/icon_with_text_widget.dart';
+import 'package:kh_online_shop_app_flutter/widgets/home_page/product_categories_widget.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -23,7 +24,7 @@ class _HomePageState extends State<HomePage> {
       ),
       body: GlowingOverscrollIndicator(
         axisDirection: AxisDirection.down,
-        color: Colors.pink.shade300,
+        color: Colors.grey.shade400,
         child: const SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -41,6 +42,7 @@ class _HomePageState extends State<HomePage> {
                 iconData: Icons.list_alt_rounded,
                 title: "Product Categories",
               ),
+              ProducctCategoriesWidget(),
               IconWithTextWidget(
                 iconData: Icons.star_rounded,
                 title: "Top Products Of The Month",
@@ -48,7 +50,7 @@ class _HomePageState extends State<HomePage> {
               HomePageTopProducts(),
               IconWithTextWidget(
                 iconData: Icons.search_rounded,
-                title: "Explore",
+                title: "Explore More",
               ),
               HomePageItems(),
               SizedBox(

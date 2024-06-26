@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kh_online_shop_app_flutter/material/box_shadow/box_shadow_util.dart';
 
 class HomePageTopProducts extends StatelessWidget {
   const HomePageTopProducts({
@@ -8,20 +9,30 @@ class HomePageTopProducts extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 200,
+      height: 250.0,
       child: GlowingOverscrollIndicator(
         axisDirection: AxisDirection.right,
-        color: Colors.pink.shade300,
+        color: Colors.grey.shade400,
         child: ListView.builder(
+          padding: const EdgeInsets.symmetric(horizontal: 10.0),
           scrollDirection: Axis.horizontal,
           itemCount: 10,
           itemBuilder: (BuildContext context, int index) {
             return Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 5.0),
+              padding: const EdgeInsets.symmetric(
+                horizontal: 5.0,
+                vertical: 10.0,
+              ),
               child: Container(
-                height: 200,
+                height: 230.0,
                 width: 150.0,
-                decoration: const BoxDecoration(color: Colors.amber),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(5.0),
+                  color: Colors.white,
+                  boxShadow: [
+                    boxShadowWidget(),
+                  ],
+                ),
               ),
             );
           },

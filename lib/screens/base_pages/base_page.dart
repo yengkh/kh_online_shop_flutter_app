@@ -18,7 +18,7 @@ class _BasePageState extends State<BasePage> {
     return Scaffold(
       body: BodyPage.body[_currentIndex],
       bottomNavigationBar: AnimatedBottomNavigationBar(
-        inactiveColor: Colors.grey,
+        inactiveColor: Colors.grey.shade700,
         activeColor: Colors.pink,
         elevation: 0.0,
         icons: BttomNavIconsList.iconList,
