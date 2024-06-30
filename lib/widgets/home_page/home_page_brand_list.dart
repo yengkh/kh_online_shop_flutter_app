@@ -11,7 +11,7 @@ class HomePageBrandList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 95.0,
+      height: 80.0,
       child: FutureBuilder<List<ProductBrandModel>?>(
         future: ProductBrandApi.fetchData(),
         builder: (context, snapshot) {
@@ -36,7 +36,7 @@ class HomePageBrandList extends StatelessWidget {
               axisDirection: AxisDirection.right,
               color: Colors.grey.shade400,
               child: ListView.builder(
-                padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                padding: const EdgeInsets.only(right: 20.0),
                 scrollDirection: Axis.horizontal,
                 itemCount: datas.length,
                 itemBuilder: (context, index) {
@@ -44,8 +44,11 @@ class HomePageBrandList extends StatelessWidget {
                   return Column(
                     children: [
                       Container(
-                        margin: const EdgeInsets.only(top: 8.0, right: 20.0),
-                        height: 50.0,
+                        margin: const EdgeInsets.only(
+                          left: 20.0,
+                          top: 10.0,
+                        ),
+                        height: 55.0,
                         width: 100.0,
                         decoration: BoxDecoration(
                           boxShadow: [
@@ -67,26 +70,26 @@ class HomePageBrandList extends StatelessWidget {
                       const SizedBox(
                         height: 12.0,
                       ),
-                      Container(
-                        margin: const EdgeInsets.only(right: 20.0),
-                        height: 18.0,
-                        width: 100.0,
-                        decoration: BoxDecoration(
-                          boxShadow: [
-                            boxShadowWidget(),
-                          ],
-                          color: Colors.white,
-                          borderRadius: const BorderRadius.all(
-                            Radius.circular(5.0),
-                          ),
-                        ),
-                        child: Center(
-                          child: Text(
-                            data.name,
-                            style: TextStyle(color: Colors.grey.shade700),
-                          ),
-                        ),
-                      ),
+                      // Container(
+                      //   margin: const EdgeInsets.only(right: 20.0),
+                      //   height: 18.0,
+                      //   width: 100.0,
+                      //   decoration: BoxDecoration(
+                      //     boxShadow: [
+                      //       boxShadowWidget(),
+                      //     ],
+                      //     color: Colors.white,
+                      //     borderRadius: const BorderRadius.all(
+                      //       Radius.circular(5.0),
+                      //     ),
+                      //   ),
+                      //   child: Center(
+                      //     child: Text(
+                      //       data.name,
+                      //       style: TextStyle(color: Colors.grey.shade700),
+                      //     ),
+                      //   ),
+                      // ),
                     ],
                   );
                 },
