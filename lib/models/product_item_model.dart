@@ -9,6 +9,7 @@ class ProductItemModel {
   final List<Map<String, dynamic>> comment;
   final List<Map<String, dynamic>> rating;
   final List<Map<String, dynamic>> images;
+  final int productQuantity;
 
   ProductItemModel({
     required this.id,
@@ -21,6 +22,7 @@ class ProductItemModel {
     required this.comment,
     required this.rating,
     required this.images,
+    required this.productQuantity,
   });
 
   factory ProductItemModel.fromJson(Map<String, dynamic> json) {
@@ -31,15 +33,16 @@ class ProductItemModel {
       uploadDate: json['upload_date'],
       productType: json['product_type'],
       productBrand: json['product_brand'],
+      productQuantity: json['product_quantity'],
       // price: _getPrice(json['price_models']),
       price: json['prices'] != null
-          ? List<Map<String, dynamic>>.from(json['prices'])
+          ? List<Map<String, dynamic>>.from(json['prices'] as List)
           : [],
       comment: json['comments'] != null
-          ? List<Map<String, dynamic>>.from(json['comments'])
+          ? List<Map<String, dynamic>>.from(json['comments'] as List)
           : [],
       rating: json['ratings'] != null
-          ? List<Map<String, dynamic>>.from(json['ratings'])
+          ? List<Map<String, dynamic>>.from(json['ratings'] as List)
           : [],
       images: _parseImages(json['images']),
     );
@@ -78,35 +81,5 @@ class ProductItemModel {
     }
 
     return imagesList;
-  }
-
-  static List<Map<String, dynamic>> _getPrice(dynamic jsonPrice) {
-    if (jsonPrice == null) {
-      return [];
-    }
-
-    List<String> priceKeys = [
-      'default_price',
-      'discount_rate',
-      'discount_price',
-      'total_price',
-    ];
-
-    List<Map<String, dynamic>> priceList = [];
-
-    for (var price in jsonPrice) {
-      Map<String, dynamic> parsPrice = {};
-
-      for (var key in priceKeys) {
-        if (price[key] != null) {
-          parsPrice[key] = price[key];
-        }
-        if (parsPrice.isNotEmpty) {
-          priceList.add(parsPrice);
-        }
-      }
-    }
-
-    return priceList;
   }
 }

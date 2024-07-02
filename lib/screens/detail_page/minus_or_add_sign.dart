@@ -14,8 +14,8 @@ class MinusOrAddSign extends StatelessWidget {
     return GestureDetector(
       onTap: onTapEvent,
       child: Container(
-        height: 40.0,
-        width: 40.0,
+        height: 30.0,
+        width: 30.0,
         decoration: const BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.all(
@@ -26,7 +26,7 @@ class MinusOrAddSign extends StatelessWidget {
           child: Text(
             item,
             style: TextStyle(
-              fontSize: 30.0,
+              fontSize: 20.0,
               color: Colors.grey.shade700,
             ),
           ),

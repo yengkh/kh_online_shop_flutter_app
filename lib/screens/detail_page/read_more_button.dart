@@ -4,16 +4,20 @@ import 'package:kh_online_shop_app_flutter/material/box_shadow/box_shadow_util.d
 class ReadMoreButton extends StatelessWidget {
   const ReadMoreButton({
     super.key,
+    required this.title,
+    required this.iconDta,
   });
+  final String title;
+  final IconData iconDta;
 
   @override
   Widget build(BuildContext context) {
     return Center(
       child: Container(
-        width: 130.0,
+        width: 155.0,
         padding: const EdgeInsets.symmetric(
           vertical: 8.0,
-          horizontal: 15.0,
+          horizontal: 10.0,
         ),
         decoration: BoxDecoration(
           color: Colors.white,
@@ -22,14 +26,15 @@ class ReadMoreButton extends StatelessWidget {
             boxShadowWidget(),
           ],
         ),
-        child: const Row(
+        child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(
-              "View More",
+              title,
             ),
             Icon(
-              Icons.keyboard_arrow_down_rounded,
+              iconDta,
+              color: Colors.grey.shade700,
             ),
           ],
         ),

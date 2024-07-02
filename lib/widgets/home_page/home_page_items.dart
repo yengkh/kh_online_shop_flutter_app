@@ -55,16 +55,53 @@ class HomePageItems extends StatelessWidget {
                 child: GestureDetector(
                   onTap: () {
                     Get.to(
-                      () => const DetailPageFromProductItem(),
+                      () => DetailPageFromProductItem(
+                        productQuantity: data.productQuantity,
+                        imageData: data.images[0],
+                        productPrice: data.price[0],
+                        productName: data.name,
+                        brandName: data.productBrand,
+                        productDescription: data.detail,
+                        productRating: data.rating.isEmpty
+                            ? {
+                                'average_star': 0.0,
+                              }
+                            : data.rating[0],
+                        productReview: data.comment.isEmpty
+                            ? {
+                                'comment_total': 0,
+                              }
+                            : data.comment[0],
+                        productType: data.productType,
+                      ),
                     );
                   },
                   child: ProductChildItem(
-                    imageUrlString: data.images[0]['other_color_one'],
+                    imageUrlString: data.images.isNotEmpty &&
+                            data.images[0]['other_color_one'] != null
+                        ? data.images[0]['other_color_one']
+                        : data.images[0]['other_color_two'],
                     productName: data.name,
                     productPrice:
                         '${data.price[0]['total_price'].toString()} \$',
                     productBrand: data.productBrand,
-                    ratingStar: data.rating[0]['average_star'],
+                    productRAting: data.price.isEmpty
+                        ? {
+                            'default_price': 0.0,
+                            'discount_rate': 0.0,
+                            'discount_price': 0.0,
+                            'total_price': 0.0,
+                            'average_star': 0.0,
+                          }
+                        : {
+                            'default_price': data.price[0]['default_price'],
+                            'discount_rate': data.price[0]['discount_rate'],
+                            'discount_price': data.price[0]['discount_price'],
+                            'total_price': data.price[0]['total_price'],
+                            'average_star': data.rating.isEmpty
+                                ? 0.0
+                                : data.rating[0]['average_star'],
+                          },
                   ),
                 ),
               );

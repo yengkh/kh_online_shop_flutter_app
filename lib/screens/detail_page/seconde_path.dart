@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:kh_online_shop_app_flutter/screens/detail_page/share_bottom_sheet.dart';
 
 class SecondePath extends StatelessWidget {
   const SecondePath({
     super.key,
+    required this.productRating,
   });
+  final Map<String, dynamic> productRating;
 
   @override
   Widget build(BuildContext context) {
@@ -12,21 +15,37 @@ class SecondePath extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          const Row(
+          Row(
             children: [
               Icon(
                 Icons.star,
-                color: Colors.pink,
+                color: productRating['average_star'] != 0
+                    ? Colors.pink
+                    : Colors.grey.shade700,
                 size: 25.0,
               ),
-              SizedBox(
+              const SizedBox(
                 width: 10.0,
               ),
-              Text("5.0 (120)")
+              Text(
+                productRating['average_star'] == 0
+                    ? "0.0 (0)"
+                    : "${productRating['average_star']} (${productRating['user_rate']})",
+              ),
             ],
           ),
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              showModalBottomSheet(
+                shape: const RoundedRectangleBorder(
+                  borderRadius: BorderRadius.all(Radius.zero),
+                ),
+                context: context,
+                builder: (BuildContext context) {
+                  return const ShareBottomShett();
+                },
+              );
+            },
             icon: Icon(
               Icons.share,
               size: 25.0,

@@ -4,8 +4,9 @@ import 'package:kh_online_shop_app_flutter/material/box_shadow/box_shadow_util.d
 class ProductReviewItem extends StatelessWidget {
   const ProductReviewItem({
     super.key,
+    required this.productReview,
   });
-
+  final Map<String, dynamic> productReview;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -19,15 +20,15 @@ class ProductReviewItem extends StatelessWidget {
           boxShadowWidget(),
         ],
       ),
-      child: const ListTile(
-        leading: Icon(Icons.person),
+      child: ListTile(
+        leading: const Icon(Icons.person),
         title: Text(
-          "This is comment",
+          productReview['comment_total'] == 0 ? '' : productReview['title'],
           maxLines: 1,
           overflow: TextOverflow.ellipsis,
         ),
         subtitle: Text(
-          "Our classic T-Shirt is the perfect blend of style, comfort, and durability. Crafted from 100% premium cotton, this shirt offers a soft and breathable feel,",
+          productReview['comment_total'] == 0 ? '' : productReview['content'],
           maxLines: 3,
           overflow: TextOverflow.ellipsis,
         ),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:kh_online_shop_app_flutter/screens/detail_page/add_to_cart_bottom_widget.dart';
+import 'package:kh_online_shop_app_flutter/screens/detail_page/item_size.dart';
 import 'package:kh_online_shop_app_flutter/screens/detail_page/product_color.dart';
 import 'package:kh_online_shop_app_flutter/screens/detail_page/product_description.dart';
 import 'package:kh_online_shop_app_flutter/screens/detail_page/product_name_path.dart';
@@ -12,11 +13,31 @@ import 'package:kh_online_shop_app_flutter/screens/detail_page/top_image_path.da
 import 'package:kh_online_shop_app_flutter/widgets/home_page/home_page_top_products.dart';
 
 class DetailPageFromProductItem extends StatefulWidget {
-  const DetailPageFromProductItem({super.key});
+  const DetailPageFromProductItem({
+    super.key,
+    required this.imageData,
+    required this.productName,
+    required this.brandName,
+    required this.productDescription,
+    required this.productPrice,
+    required this.productRating,
+    required this.productReview,
+    required this.productType,
+    required this.productQuantity,
+  });
 
   @override
   State<DetailPageFromProductItem> createState() =>
       _DetailPageFromProductItemState();
+  final Map<String, dynamic> imageData;
+  final String productName;
+  final String brandName;
+  final String productDescription;
+  final Map<String, dynamic> productPrice;
+  final Map<String, dynamic> productRating;
+  final Map<String, dynamic> productReview;
+  final String productType;
+  final int productQuantity;
 }
 
 int _currentActiveIndex = 0;
@@ -54,30 +75,88 @@ class _DetailPageFromProductItemState extends State<DetailPageFromProductItem> {
             children: [
               TopImagePath(
                 currentActiveIndex: _currentActiveIndex,
+                allImageData: widget.imageData,
               ),
               const SizedBox(
                 height: 20,
               ),
-              const SecondePath(),
-              const ThirdPath(),
-              const BrandNamePath(),
-              const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 20.0),
-                child: Text('Brand Name Here'),
+              SecondePath(
+                productRating: widget.productRating,
               ),
-              const ProductColor(),
-              const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 20.0),
-                child: Text(
-                  'Size',
-                  style: TextStyle(fontSize: 18.0),
+              ThirdPath(
+                productPrice: widget.productPrice,
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left: 20.0, top: 5.0),
+                child: Row(
+                  children: [
+                    widget.productQuantity != 0
+                        ? Text(
+                            'Instock : ',
+                            style: TextStyle(color: Colors.green.shade700),
+                          )
+                        : Text(
+                            'OutOfStock',
+                            style: TextStyle(color: Colors.red.shade700),
+                          ),
+                    widget.productQuantity != 0
+                        ? Text('${widget.productQuantity} Items Left')
+                        : const Text(''),
+                  ],
                 ),
               ),
-              const SizedBox(
-                height: 10.0,
+              BrandNamePath(
+                productName: widget.productName,
               ),
-              const ProductSizePath(),
-              const DescriptionPath(),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                child: Row(
+                  children: [
+                    const Text(
+                      'Brand : ',
+                      style: TextStyle(
+                        fontSize: 18.0,
+                      ),
+                    ),
+                    Text(
+                      widget.brandName,
+                      style: const TextStyle(
+                        fontSize: 18.0,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              const ProductColor(),
+              widget.productType.toLowerCase() == 'sport' ||
+                      widget.productType.toLowerCase() == 'electronic' ||
+                      widget.productType.toLowerCase() == 'cosmetic' ||
+                      widget.productType.toLowerCase() == 'sun-glasses' ||
+                      widget.productType.toLowerCase() == 'travel-kit'
+                  ? const SizedBox()
+                  : SizedBox(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const Padding(
+                            padding: EdgeInsets.symmetric(horizontal: 20.0),
+                            child: Text(
+                              'Size',
+                              style: TextStyle(fontSize: 18.0),
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 10.0,
+                          ),
+                          widget.productType.toLowerCase() == "sneaker"
+                              ? const ItemSized()
+                              : const ProductSizePath(),
+                        ],
+                      ),
+                    ),
+              DescriptionPath(
+                productDescription: widget.productDescription,
+              ),
               Padding(
                 padding: const EdgeInsets.symmetric(
                   horizontal: 40.0,
@@ -88,7 +167,9 @@ class _DetailPageFromProductItemState extends State<DetailPageFromProductItem> {
                   height: 2.0,
                 ),
               ),
-              const ProductReviewPath(),
+              ProductReviewPath(
+                productReview: widget.productReview,
+              ),
               const Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -99,7 +180,7 @@ class _DetailPageFromProductItemState extends State<DetailPageFromProductItem> {
                     ),
                     child: Text(
                       'Similar products you may like',
-                      style: TextStyle(fontSize: 16.0),
+                      style: TextStyle(fontSize: 18.0),
                     ),
                   ),
                   SizedBox(
@@ -119,6 +200,7 @@ class _DetailPageFromProductItemState extends State<DetailPageFromProductItem> {
         ),
       ),
       bottomNavigationBar: AddToCartBottomWidget(
+        productPrice: widget.productPrice['total_price'],
         isVisible: _isVisible,
       ),
     );

@@ -6,9 +6,11 @@ class AddToCartBottomWidget extends StatelessWidget {
   const AddToCartBottomWidget({
     super.key,
     required bool isVisible,
+    required this.productPrice,
   }) : _isVisible = isVisible;
 
   final bool _isVisible;
+  final double productPrice;
 
   @override
   Widget build(BuildContext context) {
@@ -19,13 +21,15 @@ class AddToCartBottomWidget extends StatelessWidget {
         children: [
           Container(
             decoration: const BoxDecoration(color: Colors.amber),
-            padding: const EdgeInsets.symmetric(horizontal: 30.0),
-            height: 55.0,
-            child: const Row(
+            padding: const EdgeInsets.symmetric(horizontal: 15.0),
+            height: 60.0,
+            child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                MinusOrAddWidget(),
-                AddToCartButton(),
+                MinusOrAddWidget(
+                  productPrice: productPrice,
+                ),
+                const AddToCartButton(),
               ],
             ),
           ),

@@ -10,7 +10,7 @@ class AddToCartButton extends StatelessWidget {
     return GestureDetector(
       onTap: () {},
       child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 20.0),
+        padding: const EdgeInsets.symmetric(horizontal: 15.0),
         height: 40.0,
         decoration: const BoxDecoration(
           color: Colors.white,

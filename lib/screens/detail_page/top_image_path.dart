@@ -6,11 +6,16 @@ import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 // ignore: must_be_immutable
 class TopImagePath extends StatefulWidget {
-  TopImagePath({super.key, required this.currentActiveIndex});
+  TopImagePath({
+    super.key,
+    required this.currentActiveIndex,
+    required this.allImageData,
+  });
 
   @override
   State<TopImagePath> createState() => _TopImagePathState();
   int currentActiveIndex;
+  final Map<String, dynamic> allImageData;
 }
 
 class _TopImagePathState extends State<TopImagePath> {
@@ -31,15 +36,23 @@ class _TopImagePathState extends State<TopImagePath> {
                     widget.currentActiveIndex = index;
                   });
                 }),
-            items: [1, 2, 3, 4, 5].map((i) {
+            items: widget.allImageData.values.toList().map((i) {
               return Builder(
                 builder: (BuildContext context) {
                   return Container(
                     width: MediaQuery.of(context).size.width,
-                    decoration: const BoxDecoration(color: Colors.amber),
-                    child: Image.asset(
-                      'assets/images/tree.jpg',
-                      fit: BoxFit.cover,
+                    decoration: const BoxDecoration(color: Colors.white),
+                    child: Padding(
+                      padding: const EdgeInsets.only(
+                        left: 50.0,
+                        right: 50.0,
+                        top: 60.0,
+                        bottom: 50.0,
+                      ),
+                      child: Image.network(
+                        i.toString(),
+                        fit: BoxFit.contain,
+                      ),
                     ),
                   );
                 },
@@ -66,7 +79,7 @@ class _TopImagePathState extends State<TopImagePath> {
                 dotHeight: 4.0,
                 dotWidth: 10.0,
               ),
-              count: 5,
+              count: widget.allImageData.values.toList().length,
               axisDirection: Axis.horizontal,
               activeIndex: widget.currentActiveIndex,
             ),
