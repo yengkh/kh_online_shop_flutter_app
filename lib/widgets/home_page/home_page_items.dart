@@ -5,6 +5,7 @@ import 'package:kh_online_shop_app_flutter/apis/product_item_api.dart';
 import 'package:kh_online_shop_app_flutter/material/box_shadow/box_shadow_util.dart';
 import 'package:kh_online_shop_app_flutter/models/product_item_model.dart';
 import 'package:kh_online_shop_app_flutter/screens/detail_page/detail_page_from_product_item.dart';
+import 'package:kh_online_shop_app_flutter/screens/shimmer_items/home_page_product_item_shimmer.dart';
 import 'package:kh_online_shop_app_flutter/widgets/home_page/product_child_item.dart';
 
 class HomePageItems extends StatelessWidget {
@@ -18,9 +19,7 @@ class HomePageItems extends StatelessWidget {
       future: ProductItemAPI.getData(),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return const Center(
-            child: CircularProgressIndicator(),
-          );
+          return const HomePageProductitemShimmer();
         } else if (snapshot.hasError) {
           return Center(
             child: Text("Error: ${snapshot.error}"),

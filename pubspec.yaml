@@ -17,6 +17,7 @@ dependencies:
   flutter_launcher_icons: ^0.13.1
   flutter_rating_bar: ^4.0.1
   font_awesome_flutter: ^10.7.0
+  shimmer: ^3.0.0
 
 dev_dependencies:
   flutter_test:
@@ -53,3 +54,11 @@ flutter:
   assets:
     - assets/icons/
     - assets/images/
+    - assets/shirt/
+    - assets/electronic/
+    - assets/sneaker/
+    - assets/cosmetic/
+    - assets/children/
+    - assets/sport/
+    - assets/jacket/
+    - assets/hat/

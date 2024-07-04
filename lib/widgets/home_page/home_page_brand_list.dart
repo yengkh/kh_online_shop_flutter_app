@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_navigation/get_navigation.dart';
 import 'package:kh_online_shop_app_flutter/apis/product_brand_api.dart';
 import 'package:kh_online_shop_app_flutter/material/box_shadow/box_shadow_util.dart';
 import 'package:kh_online_shop_app_flutter/models/home_page_product_brand_model.dart';
+import 'package:kh_online_shop_app_flutter/screens/shimmer_items/home_page_brand_shimmer.dart';
+import 'package:kh_online_shop_app_flutter/screens/view_product_by_brand/view_product_by_brand.dart';
+import 'package:kh_online_shop_app_flutter/widgets/more_widget/brand_error_404_or_no_data.dart';
 
 class HomePageBrandList extends StatelessWidget {
   const HomePageBrandList({
@@ -11,24 +16,19 @@ class HomePageBrandList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 80.0,
+      height: 65.0,
       child: FutureBuilder<List<ProductBrandModel>?>(
         future: ProductBrandApi.fetchData(),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return const Center(
-              child: CircularProgressIndicator(
-                color: Colors.grey,
-                strokeWidth: 2.0,
-              ),
-            );
+            return const HomePageBrandShimmer();
           } else if (snapshot.hasError) {
-            return Center(
-              child: Text("Error: ${snapshot.error}"),
+            return const BrandError404OrNoData(
+              image: 'assets/images/error-404.png',
             );
           } else if (snapshot.data == null || snapshot.data!.isEmpty) {
-            return const Center(
-              child: Text('No data available'),
+            return const BrandError404OrNoData(
+              image: 'assets/images/empty_data_icon_149938.webp',
             );
           } else {
             final datas = snapshot.data!;
@@ -36,61 +36,41 @@ class HomePageBrandList extends StatelessWidget {
               axisDirection: AxisDirection.right,
               color: Colors.grey.shade400,
               child: ListView.builder(
-                padding: const EdgeInsets.only(right: 20.0),
+                padding: const EdgeInsets.only(top: 10.0, bottom: 2.0),
                 scrollDirection: Axis.horizontal,
                 itemCount: datas.length,
                 itemBuilder: (context, index) {
                   final data = datas[index];
-                  return Column(
-                    children: [
-                      Container(
-                        margin: const EdgeInsets.only(
-                          left: 20.0,
-                          top: 10.0,
+                  return GestureDetector(
+                    onTap: () {
+                      Get.to(
+                        () => ViewProductByBrand(
+                          brandImage: data.imageUrl,
+                          brand: data.name,
                         ),
-                        height: 55.0,
-                        width: 100.0,
-                        decoration: BoxDecoration(
-                          boxShadow: [
-                            boxShadowWidget(),
-                          ],
-                          color: Colors.white,
-                          borderRadius: const BorderRadius.all(
-                            Radius.circular(5.0),
-                          ),
-                        ),
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(5.0),
-                          child: Image.network(
-                            data.imageUrl,
-                            fit: BoxFit.cover,
-                          ),
+                      );
+                    },
+                    child: Container(
+                      margin: const EdgeInsets.symmetric(horizontal: 10.0),
+                      height: 60.0,
+                      width: 100.0,
+                      decoration: BoxDecoration(
+                        boxShadow: [
+                          boxShadowWidget(),
+                        ],
+                        color: Colors.white,
+                        borderRadius: const BorderRadius.all(
+                          Radius.circular(5.0),
                         ),
                       ),
-                      const SizedBox(
-                        height: 12.0,
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(5.0),
+                        child: Image.network(
+                          data.imageUrl,
+                          fit: BoxFit.cover,
+                        ),
                       ),
-                      // Container(
-                      //   margin: const EdgeInsets.only(right: 20.0),
-                      //   height: 18.0,
-                      //   width: 100.0,
-                      //   decoration: BoxDecoration(
-                      //     boxShadow: [
-                      //       boxShadowWidget(),
-                      //     ],
-                      //     color: Colors.white,
-                      //     borderRadius: const BorderRadius.all(
-                      //       Radius.circular(5.0),
-                      //     ),
-                      //   ),
-                      //   child: Center(
-                      //     child: Text(
-                      //       data.name,
-                      //       style: TextStyle(color: Colors.grey.shade700),
-                      //     ),
-                      //   ),
-                      // ),
-                    ],
+                    ),
                   );
                 },
               ),

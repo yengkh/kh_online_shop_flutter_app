@@ -2,6 +2,8 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:kh_online_shop_app_flutter/apis/home_page_carocel_api.dart';
 import 'package:kh_online_shop_app_flutter/models/home_page_carocel_model.dart';
+import 'package:kh_online_shop_app_flutter/screens/shimmer_items/home_page_shimmer.dart';
+import 'package:kh_online_shop_app_flutter/widgets/more_widget/home_page_404_error.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class HomePageCarocelSlider extends StatefulWidget {
@@ -43,17 +45,18 @@ class _HomePageCarocelSliderState extends State<HomePageCarocelSlider> {
     if (_isLoading) {
       return const SizedBox(
         height: 180.0,
-        child: Center(
-          child: CircularProgressIndicator(
-            color: Colors.grey,
-            strokeWidth: 2.0,
-          ),
-        ),
+        child: HomePageShimmer(),
       );
     } else if (_error != null) {
-      return Center(child: Text("Error: $_error"));
+      return const HomePageCarosuel404Error(
+        image: 'assets/images/error-404.png',
+        title: 'Can not fetch data!',
+      );
     } else if (_images == null || _images!.isEmpty) {
-      return const Center(child: Text('No data available'));
+      return const HomePageCarosuel404Error(
+        image: 'assets/images/empty_data_icon_149938.webp',
+        title: 'No data!',
+      );
     } else {
       return Stack(
         children: [
