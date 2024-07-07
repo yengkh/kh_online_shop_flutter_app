@@ -9,12 +9,12 @@ class HomePageTopProducts extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 250.0,
+      height: 270.0,
       child: GlowingOverscrollIndicator(
         axisDirection: AxisDirection.right,
         color: Colors.grey.shade400,
         child: ListView.builder(
-          padding: const EdgeInsets.symmetric(horizontal: 10.0),
+          padding: const EdgeInsets.all(5.0),
           scrollDirection: Axis.horizontal,
           itemCount: 10,
           itemBuilder: (BuildContext context, int index) {

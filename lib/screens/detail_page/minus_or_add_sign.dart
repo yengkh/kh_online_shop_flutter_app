@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 class MinusOrAddSign extends StatelessWidget {
   const MinusOrAddSign({
     super.key,
-    required this.item,
     this.onTapEvent,
+    required this.iconsData,
   });
-  final String item;
+  final IconData iconsData;
   final Function()? onTapEvent;
 
   @override
@@ -14,8 +14,8 @@ class MinusOrAddSign extends StatelessWidget {
     return GestureDetector(
       onTap: onTapEvent,
       child: Container(
-        height: 30.0,
-        width: 30.0,
+        height: 35.0,
+        width: 35.0,
         decoration: const BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.all(
@@ -23,13 +23,7 @@ class MinusOrAddSign extends StatelessWidget {
           ),
         ),
         child: Center(
-          child: Text(
-            item,
-            style: TextStyle(
-              fontSize: 20.0,
-              color: Colors.grey.shade700,
-            ),
-          ),
+          child: Icon(iconsData),
         ),
       ),
     );

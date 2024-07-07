@@ -10,7 +10,7 @@ import 'package:kh_online_shop_app_flutter/screens/detail_page/product_size_item
 import 'package:kh_online_shop_app_flutter/screens/detail_page/seconde_path.dart';
 import 'package:kh_online_shop_app_flutter/screens/detail_page/third_path.dart';
 import 'package:kh_online_shop_app_flutter/screens/detail_page/top_image_path.dart';
-import 'package:kh_online_shop_app_flutter/widgets/home_page/home_page_top_products.dart';
+import 'package:kh_online_shop_app_flutter/widgets/detail_page/similar_product.dart';
 
 class DetailPageFromProductItem extends StatefulWidget {
   const DetailPageFromProductItem({
@@ -92,11 +92,11 @@ class _DetailPageFromProductItemState extends State<DetailPageFromProductItem> {
                   children: [
                     widget.productQuantity != 0
                         ? Text(
-                            'Instock : ',
+                            'In Stock : ',
                             style: TextStyle(color: Colors.green.shade700),
                           )
                         : Text(
-                            'OutOfStock',
+                            'Out Of Stock',
                             style: TextStyle(color: Colors.red.shade700),
                           ),
                     widget.productQuantity != 0
@@ -170,10 +170,10 @@ class _DetailPageFromProductItemState extends State<DetailPageFromProductItem> {
               ProductReviewPath(
                 productReview: widget.productReview,
               ),
-              const Column(
+              Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Padding(
+                  const Padding(
                     padding: EdgeInsets.only(
                       left: 20.0,
                       top: 20.0,
@@ -183,12 +183,11 @@ class _DetailPageFromProductItemState extends State<DetailPageFromProductItem> {
                       style: TextStyle(fontSize: 18.0),
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10.0,
                   ),
-                  SizedBox(
-                    height: 250.0,
-                    child: HomePageTopProducts(),
+                  SimilarProduct(
+                    productType: widget.productType,
                   ),
                 ],
               ),
@@ -202,6 +201,9 @@ class _DetailPageFromProductItemState extends State<DetailPageFromProductItem> {
       bottomNavigationBar: AddToCartBottomWidget(
         productPrice: widget.productPrice['total_price'],
         isVisible: _isVisible,
+        brand: widget.brandName,
+        image: widget.imageData['other_color_one'],
+        name: widget.productName,
       ),
     );
   }

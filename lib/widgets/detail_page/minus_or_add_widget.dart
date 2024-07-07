@@ -1,64 +1,63 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
+import 'package:kh_online_shop_app_flutter/material/state_magement/add_to_cart_controller.dart';
 import 'package:kh_online_shop_app_flutter/screens/detail_page/minus_or_add_sign.dart';
 
-class MinusOrAddWidget extends StatefulWidget {
-  const MinusOrAddWidget({
+// ignore: must_be_immutable
+class MinusOrAddWidget extends StatelessWidget {
+  MinusOrAddWidget({
     super.key,
     required this.productPrice,
   });
   final double productPrice;
-
-  @override
-  State<MinusOrAddWidget> createState() => _MinusOrAddWidgetState();
-}
-
-class _MinusOrAddWidgetState extends State<MinusOrAddWidget> {
-  int itemValue = 1;
-
-  double get itemPrice => widget.productPrice * itemValue;
+  final AddProductToCart addProductTo = Get.put(AddProductToCart());
 
   @override
   Widget build(BuildContext context) {
+    addProductTo.totalPrice.value = productPrice;
+    addProductTo.pricee.value = productPrice;
+    addProductTo.quantity.value = 1;
     return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        MinusOrAddSign(
-          onTapEvent: () {
-            setState(() {
-              if (itemValue > 1) {
-                itemValue--;
-              }
-            });
-          },
-          item: "-",
-        ),
-        const SizedBox(
-          width: 8.0,
-        ),
-        Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+        Row(
           children: [
-            Text(
-              "  $itemValue  ",
-              style: const TextStyle(fontSize: 16.0, color: Colors.white),
+            const Text(
+              'Total Price : ',
+              style: TextStyle(fontSize: 16.0, color: Colors.white),
             ),
-            Text(
-              '${itemPrice.toStringAsFixed(2)}\$',
-              style: const TextStyle(fontSize: 16.0, color: Colors.white),
-            ),
+            Obx(() => Text(
+                  addProductTo.totalPrice.value.toStringAsFixed(2),
+                  style: const TextStyle(fontSize: 16.0, color: Colors.white),
+                )),
           ],
         ),
-        const SizedBox(
-          width: 8.0,
-        ),
-        MinusOrAddSign(
-          onTapEvent: () {
-            setState(() {
-              itemValue++;
-            });
-          },
-          item: "+",
+        Row(
+          children: [
+            MinusOrAddSign(
+              onTapEvent: () => addProductTo.decrement(),
+              iconsData: Icons.remove,
+            ),
+            const SizedBox(
+              width: 8.0,
+            ),
+            Obx(() => Text(
+                  addProductTo.quantity.value.toString(),
+                  style: const TextStyle(fontSize: 16.0, color: Colors.white),
+                )),
+            const SizedBox(
+              width: 8.0,
+            ),
+            MinusOrAddSign(
+              onTapEvent: () => addProductTo.increment(),
+              iconsData: Icons.add,
+            ),
+          ],
         ),
       ],
     );
   }
 }
+
+class AddPtoductToCartController {}

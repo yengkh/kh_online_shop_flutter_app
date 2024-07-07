@@ -50,7 +50,7 @@ class _HomePageCarocelSliderState extends State<HomePageCarocelSlider> {
     } else if (_error != null) {
       return const HomePageCarosuel404Error(
         image: 'assets/images/error-404.png',
-        title: 'Can not fetch data!',
+        title: 'Can not get data!',
       );
     } else if (_images == null || _images!.isEmpty) {
       return const HomePageCarosuel404Error(

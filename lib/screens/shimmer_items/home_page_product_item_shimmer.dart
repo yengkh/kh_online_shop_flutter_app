@@ -15,8 +15,8 @@ class HomePageProductitemShimmer extends StatelessWidget {
         shrinkWrap: true,
         scrollDirection: Axis.vertical,
         padding: const EdgeInsets.symmetric(
-          horizontal: 10.0,
-          vertical: 20.0,
+          vertical: 10.0,
+          horizontal: 5.0,
         ),
         gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
           maxCrossAxisExtent: MediaQuery.of(context).size.width / 2,

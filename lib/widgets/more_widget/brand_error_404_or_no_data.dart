@@ -8,7 +8,11 @@ class BrandError404OrNoData extends StatelessWidget {
     return SizedBox(
       height: 65.0,
       child: ListView.builder(
-        padding: const EdgeInsets.symmetric(horizontal: 5.0),
+        padding: const EdgeInsets.only(
+          left: 5.0,
+          right: 5.0,
+          top: 10.0,
+        ),
         scrollDirection: Axis.horizontal,
         itemCount: 10,
         itemBuilder: (BuildContext context, int index) {
@@ -19,9 +23,12 @@ class BrandError404OrNoData extends StatelessWidget {
               borderRadius: BorderRadius.circular(5.0),
             ),
             margin: const EdgeInsets.symmetric(horizontal: 5.0),
-            child: Image.asset(
-              image,
-              fit: BoxFit.cover,
+            child: Center(
+              child: Image.asset(
+                image,
+                height: 62.0,
+                fit: BoxFit.cover,
+              ),
             ),
           );
         },

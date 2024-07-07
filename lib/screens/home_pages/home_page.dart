@@ -27,17 +27,22 @@ class _HomePageState extends State<HomePage> {
         color: Colors.grey.shade400,
         child: const SingleChildScrollView(
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               SizedBox(
                 height: 20.0,
               ),
               HomePageCarocelSlider(),
+              SizedBox(
+                height: 20.0,
+              ),
               IconWithTextWidget(
                 iconData: Icons.star_rounded,
                 title: "Popular Brands",
               ),
               HomePageBrandList(),
+              SizedBox(
+                height: 20.0,
+              ),
               IconWithTextWidget(
                 iconData: Icons.list_alt_rounded,
                 title: "Product Categories",
@@ -48,6 +53,9 @@ class _HomePageState extends State<HomePage> {
                 title: "Top Products Of The Month",
               ),
               HomePageTopProducts(),
+              SizedBox(
+                height: 10.0,
+              ),
               IconWithTextWidget(
                 iconData: Icons.search_rounded,
                 title: "Explore More",

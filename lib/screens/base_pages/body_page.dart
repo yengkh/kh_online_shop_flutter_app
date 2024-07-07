@@ -7,7 +7,7 @@ import 'package:kh_online_shop_app_flutter/screens/setting_pages/setting_page.da
 class BodyPage {
   static List<Widget> body = [
     const HomePage(),
-    const CartPage(),
+    CartPage(),
     const FavoritePage(),
     const SettingPage(),
   ];

@@ -1,82 +1,74 @@
 import 'package:flutter/material.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get_navigation/get_navigation.dart';
-import 'package:kh_online_shop_app_flutter/apis/product_item_api.dart';
+import 'package:get/get.dart';
+import 'package:kh_online_shop_app_flutter/apis/search_product_by_type_api.dart';
 import 'package:kh_online_shop_app_flutter/material/box_shadow/box_shadow_util.dart';
 import 'package:kh_online_shop_app_flutter/models/product_item_model.dart';
 import 'package:kh_online_shop_app_flutter/screens/detail_page/detail_page_from_product_item.dart';
-import 'package:kh_online_shop_app_flutter/screens/shimmer_items/home_page_product_item_shimmer.dart';
 import 'package:kh_online_shop_app_flutter/widgets/home_page/product_child_item.dart';
 
-class HomePageItems extends StatelessWidget {
-  const HomePageItems({
+class SimilarProduct extends StatefulWidget {
+  const SimilarProduct({
     super.key,
+    required this.productType,
   });
+  final String productType;
+
+  @override
+  State<SimilarProduct> createState() => _SimilarProductState();
+}
+
+class _SimilarProductState extends State<SimilarProduct> {
+  List<ProductItemModel>? _items;
+  bool _isLoading = true;
+
+  @override
+  void initState() {
+    _fetchData();
+    super.initState();
+  }
+
+  Future<void> _fetchData() async {
+    try {
+      List<ProductItemModel> items =
+          await SearchProductByTypeApi.getProduct(widget.productType);
+      setState(() {
+        _items = items;
+        _isLoading = false;
+      });
+    } catch (e) {
+      setState(() {
+        _isLoading = false;
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<List<ProductItemModel>>(
-      future: ProductItemAPI.getData(),
-      builder: (context, snapshot) {
-        if (snapshot.connectionState == ConnectionState.waiting) {
-          return const HomePageProductitemShimmer();
-        } else if (snapshot.hasError) {
-          return GridView.builder(
-            padding: const EdgeInsets.symmetric(
-              vertical: 10.0,
-              horizontal: 5.0,
-            ),
-            physics: const NeverScrollableScrollPhysics(),
-            shrinkWrap: true,
-            scrollDirection: Axis.vertical,
-            gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-              maxCrossAxisExtent: MediaQuery.of(context).size.width / 2,
-              childAspectRatio: 0.65,
-            ),
-            itemCount: 10,
-            itemBuilder: (BuildContext context, int index) {
-              return Container(
-                margin: const EdgeInsets.all(5.0),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(5.0),
-                  color: Colors.grey.shade300,
-                ),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Image.asset(
-                      'assets/images/error-404.png',
-                      height: 120.0,
-                      fit: BoxFit.cover,
-                    ),
-                    const Text(
-                      'Can not get data!',
-                      style: TextStyle(fontSize: 12.0),
-                    ),
-                  ],
-                ),
-              );
-            },
-          );
-        } else if (snapshot.data == null || snapshot.data!.isEmpty) {
-          return const Center(
-            child: Text('No data available'),
-          );
-        } else {
-          final datas = snapshot.data!;
-          return GridView.builder(
-            padding: const EdgeInsets.symmetric(horizontal: 5.0),
-            physics: const NeverScrollableScrollPhysics(),
-            shrinkWrap: true,
-            scrollDirection: Axis.vertical,
-            gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-              maxCrossAxisExtent: MediaQuery.of(context).size.width / 2,
-              childAspectRatio: 0.65,
-            ),
-            itemCount: datas.length,
+    if (_isLoading) {
+      return const Center(
+        child: CircularProgressIndicator(),
+      );
+    } else if (_items == null || _items!.isEmpty) {
+      return const Center(
+        child: Text('No Data!'),
+      );
+    } else {
+      final datas = _items!;
+      return SizedBox(
+        height: 270.0,
+        width: MediaQuery.of(context).size.width,
+        child: GlowingOverscrollIndicator(
+          axisDirection: AxisDirection.right,
+          color: Colors.grey.shade400,
+          child: ListView.builder(
+            padding: const EdgeInsets.all(5.0),
+            scrollDirection: Axis.horizontal,
+            itemCount: _items!.length,
             itemBuilder: (BuildContext context, int index) {
               final data = datas[index];
               return Container(
+                height: 270.0,
+                width: 150.0,
                 margin: const EdgeInsets.all(5.0),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(5.0),
@@ -139,9 +131,9 @@ class HomePageItems extends StatelessWidget {
                 ),
               );
             },
-          );
-        }
-      },
-    );
+          ),
+        ),
+      );
+    }
   }
 }

@@ -6,6 +6,7 @@ import 'package:kh_online_shop_app_flutter/material/box_shadow/box_shadow_util.d
 import 'package:kh_online_shop_app_flutter/models/home_page_product_brand_model.dart';
 import 'package:kh_online_shop_app_flutter/screens/shimmer_items/home_page_category_shimmer.dart';
 import 'package:kh_online_shop_app_flutter/screens/view_product_by_type/view_product_by_type.dart';
+import 'package:kh_online_shop_app_flutter/widgets/more_widget/product_error_404_or_no_data.dart';
 
 class ProducctCategoriesWidget extends StatelessWidget {
   const ProducctCategoriesWidget({
@@ -22,12 +23,14 @@ class ProducctCategoriesWidget extends StatelessWidget {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const HomePageCategoryShimmer();
           } else if (snapshot.hasError) {
-            return Center(
-              child: Text("Error: ${snapshot.error}"),
+            return const ProductCategoryErrorOrNoData(
+              image: 'assets/images/error-404.png',
+              title: "Error!",
             );
           } else if (snapshot.data == null || snapshot.data!.isEmpty) {
-            return const Center(
-              child: Text('No data available'),
+            return const ProductCategoryErrorOrNoData(
+              image: 'assets/images/empty_data_icon_149938.webp',
+              title: "No Data!",
             );
           } else {
             final datas = snapshot.data!;

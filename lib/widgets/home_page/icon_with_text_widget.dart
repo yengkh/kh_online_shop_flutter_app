@@ -15,7 +15,6 @@ class IconWithTextWidget extends StatelessWidget {
       padding: const EdgeInsets.only(
         left: 8.0,
         top: 15.0,
-        //bottom: 10.0,
       ),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,

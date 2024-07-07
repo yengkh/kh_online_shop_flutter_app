@@ -38,7 +38,10 @@ class HomePageCarosuel404Error extends StatelessWidget {
                       height: 120.0,
                       width: 120.0,
                     ),
-                    Text(title ?? ''),
+                    Text(
+                      title ?? '',
+                      style: const TextStyle(fontSize: 12.0),
+                    ),
                   ],
                 ),
               ),
