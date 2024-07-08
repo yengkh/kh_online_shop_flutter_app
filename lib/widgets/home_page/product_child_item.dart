@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:kh_online_shop_app_flutter/material/state_magement/add_product_to_favorite_controller.dart';
+import 'package:kh_online_shop_app_flutter/models/add_product_to_favorite_model.dart';
+import 'package:kh_online_shop_app_flutter/screens/detail_page/top_image_path.dart';
 import 'package:kh_online_shop_app_flutter/widgets/home_page/product_item_detail.dart';
 import 'dart:math' as math;
 
 class ProductChildItem extends StatefulWidget {
-  const ProductChildItem({
+  ProductChildItem({
     super.key,
     required this.imageUrlString,
     required this.productName,
@@ -11,6 +15,7 @@ class ProductChildItem extends StatefulWidget {
     required this.productBrand,
     required this.productRAting,
   });
+  final controllerFavorite = Get.put(AddProductToFavoriteController());
 
   @override
   State<ProductChildItem> createState() => _ProductChildItemState();
@@ -48,7 +53,19 @@ class _ProductChildItemState extends State<ProductChildItem> {
         Positioned(
           right: 0,
           child: IconButton(
-            onPressed: () {},
+            onPressed: () {
+              final product = AddProductToFavoriteModel(
+                image: widget.imageUrlString,
+                name: widget.productName,
+                price: double.parse(widget.productPrice),
+                brand: widget.productBrand,
+              );
+              controllerFavorite.addToFavorite(product);
+              Get.snackbar(
+                "Add To Favorite!",
+                'Product ${widget.productName} added to favorite!',
+              );
+            },
             icon: const Icon(Icons.favorite_outline_rounded),
           ),
         ),

@@ -76,6 +76,9 @@ class _DetailPageFromProductItemState extends State<DetailPageFromProductItem> {
               TopImagePath(
                 currentActiveIndex: _currentActiveIndex,
                 allImageData: widget.imageData,
+                brand: widget.brandName,
+                name: widget.productName,
+                price: widget.productPrice['total_price'],
               ),
               const SizedBox(
                 height: 20,

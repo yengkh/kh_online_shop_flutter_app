@@ -1,5 +1,8 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:kh_online_shop_app_flutter/material/state_magement/add_product_to_favorite_controller.dart';
+import 'package:kh_online_shop_app_flutter/models/add_product_to_favorite_model.dart';
 import 'package:kh_online_shop_app_flutter/screens/detail_page/top_position_of_detail_page.dart';
 import 'package:kh_online_shop_app_flutter/widgets/more_widget/arrow_back_widget.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
@@ -10,15 +13,25 @@ class TopImagePath extends StatefulWidget {
     super.key,
     required this.currentActiveIndex,
     required this.allImageData,
+    required this.name,
+    required this.price,
+    required this.brand,
   });
 
   @override
   State<TopImagePath> createState() => _TopImagePathState();
   int currentActiveIndex;
   final Map<String, dynamic> allImageData;
+  final String name;
+  final double price;
+  final String brand;
 }
 
+final controllerFavorite = Get.put(AddProductToFavoriteController());
+
 class _TopImagePathState extends State<TopImagePath> {
+  get pimage => widget.allImageData['other_color_one'];
+
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -64,8 +77,21 @@ class _TopImagePathState extends State<TopImagePath> {
           childOfItem: ArrowBackWidget(),
           leftPosition: 20.0,
         ),
-        const TopPositionOfDetailPage(
-          childOfItem: Icon(Icons.favorite_outline_rounded),
+        TopPositionOfDetailPage(
+          onTapEvent: () {
+            final product = AddProductToFavoriteModel(
+              image: pimage,
+              name: widget.name,
+              price: widget.price,
+              brand: widget.brand,
+            );
+            controllerFavorite.addToFavorite(product);
+            Get.snackbar(
+              'Added to favorite!',
+              'Product ${widget.name} added to your favorite',
+            );
+          },
+          childOfItem: const Icon(Icons.favorite_outline_rounded),
           rightPosition: 20.0,
         ),
         Positioned(

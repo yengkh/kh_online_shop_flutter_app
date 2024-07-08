@@ -27,7 +27,7 @@ class ProductItemDetail extends StatelessWidget {
             title: 'Name : ',
           ),
           RowTextWidget(
-            productName: widget.productPrice,
+            productName: '\$${widget.productPrice}',
             title: 'Price : ',
             textStyleItems: productRAting['discount_rate'] != 0
                 ? const TextStyle(

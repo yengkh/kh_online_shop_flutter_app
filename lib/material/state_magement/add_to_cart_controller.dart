@@ -26,4 +26,20 @@ class AddProductToCart extends GetxController {
     addToCartItem.add(product);
     update();
   }
+
+  void updateIncrement(int index) {
+    var product = addToCartItem[index];
+    product.quantity.value++;
+    product.totalPrice.value = product.productPrice * product.quantity.value;
+    update();
+  }
+
+  void updateDecrement(int index) {
+    var product = addToCartItem[index];
+    if (product.quantity.value > 1) {
+      product.quantity.value--;
+      product.totalPrice.value = product.productPrice * product.quantity.value;
+      update();
+    }
+  }
 }

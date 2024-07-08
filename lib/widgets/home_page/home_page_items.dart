@@ -115,8 +115,7 @@ class HomePageItems extends StatelessWidget {
                         ? data.images[0]['other_color_one']
                         : data.images[0]['other_color_two'],
                     productName: data.name,
-                    productPrice:
-                        '${data.price[0]['total_price'].toString()} \$',
+                    productPrice: data.price[0]['total_price'].toString(),
                     productBrand: data.productBrand,
                     productRAting: data.price.isEmpty
                         ? {

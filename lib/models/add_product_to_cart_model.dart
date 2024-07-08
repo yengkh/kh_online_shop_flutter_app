@@ -1,3 +1,5 @@
+import 'package:get/get.dart';
+
 class AddProductToCartModel {
   String name;
   String image;
@@ -11,4 +13,7 @@ class AddProductToCartModel {
     required this.productPrice,
     required this.productQuantity,
   });
+
+  var quantity = 1.obs;
+  var totalPrice = 0.0.obs;
 }
