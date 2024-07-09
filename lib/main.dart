@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:kh_online_shop_app_flutter/material/state_magement/add_product_to_favorite_controller.dart';
 import 'package:kh_online_shop_app_flutter/material/state_magement/add_to_cart_controller.dart';
 import 'package:kh_online_shop_app_flutter/screens/base_pages/base_page.dart';

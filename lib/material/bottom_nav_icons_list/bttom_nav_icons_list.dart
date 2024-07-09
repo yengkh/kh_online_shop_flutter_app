@@ -5,6 +5,6 @@ class BttomNavIconsList {
     Icons.home,
     Icons.shopping_cart,
     Icons.favorite,
-    Icons.settings,
+    Icons.person_2_rounded,
   ];
 }
