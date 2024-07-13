@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import "package:easy_localization/easy_localization.dart";
 
 class BrandNamePath extends StatelessWidget {
   const BrandNamePath({
@@ -17,9 +18,9 @@ class BrandNamePath extends StatelessWidget {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text(
-            'Name : ',
-            style: TextStyle(
+          Text(
+            '${context.tr('name')} : ',
+            style: const TextStyle(
               fontSize: 18.0,
             ),
           ),

@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 class ProfilePath extends StatelessWidget {
@@ -8,7 +9,6 @@ class ProfilePath extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      color: Colors.grey.shade200,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(5.0),
       ),
@@ -29,25 +29,25 @@ class ProfilePath extends StatelessWidget {
             const SizedBox(
               height: 15.0,
             ),
-            const Column(
+            Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Row(
                   children: [
-                    Text("Name : "),
-                    Text("Chann Yeng"),
+                    Text("${context.tr('name')} : "),
+                    const Text("Chann Yeng"),
                   ],
                 ),
                 Row(
                   children: [
-                    Text("Email : "),
-                    Text("channyeng@gmail.com"),
+                    Text("${context.tr('email')} : "),
+                    const Text("channyeng@gmail.com"),
                   ],
                 ),
                 Row(
                   children: [
-                    Text("Phone Number : "),
-                    Text("016 52 20 78"),
+                    Text("${context.tr('phoneNumber')} : "),
+                    const Text("016 52 20 78"),
                   ],
                 ),
               ],
@@ -62,9 +62,9 @@ class ProfilePath extends StatelessWidget {
                 backgroundColor: WidgetStatePropertyAll(Colors.blue),
               ),
               onPressed: () {},
-              child: const Text(
-                "Edit profile",
-                style: TextStyle(color: Colors.white),
+              child: Text(
+                context.tr('editProfile'),
+                style: const TextStyle(color: Colors.white),
               ),
             ),
           ],

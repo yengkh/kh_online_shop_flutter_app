@@ -1,3 +1,4 @@
+import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/get_navigation.dart';
@@ -15,6 +16,12 @@ class ProducctCategoriesWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // Get current theme mode
+    final themeMode = AdaptiveTheme.of(context).mode;
+    // Determine active color based on theme mode
+    final activeColor = themeMode == AdaptiveThemeMode.dark
+        ? Colors.grey.shade700
+        : Colors.white;
     return SizedBox(
       height: 200.0,
       child: FutureBuilder<List<ProductBrandModel>>(
@@ -68,7 +75,7 @@ class ProducctCategoriesWidget extends StatelessWidget {
                           ),
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(5.0),
-                            color: Colors.white,
+                            color: activeColor,
                             boxShadow: [
                               boxShadowWidget(),
                             ],

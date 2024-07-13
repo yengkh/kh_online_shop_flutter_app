@@ -5,6 +5,7 @@ import 'package:kh_online_shop_app_flutter/screens/setting_pages/log_out_button.
 import 'package:kh_online_shop_app_flutter/screens/setting_pages/profile_path.dart';
 import 'package:kh_online_shop_app_flutter/screens/setting_pages/theme_mode_select.dart';
 import 'package:package_info_plus/package_info_plus.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class SettingPage extends StatefulWidget {
   const SettingPage({super.key});
@@ -40,8 +41,7 @@ class _SettingPageState extends State<SettingPage> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          "My Profile",
-          style: TextStyle(color: Colors.grey.shade700),
+          context.tr('myProfile'),
         ),
       ),
       body: GlowingOverscrollIndicator(
@@ -60,7 +60,7 @@ class _SettingPageState extends State<SettingPage> {
               ),
               CardItem(
                 onTapEvent: () {},
-                title: "Address",
+                title: context.tr('address'),
                 description: "Phnom Penh",
                 iconsData: Icons.maps_home_work_rounded,
               ),
@@ -69,16 +69,16 @@ class _SettingPageState extends State<SettingPage> {
               ),
               CardItem(
                 onTapEvent: () {},
-                title: "Payment History",
-                description: "See your previous puchase",
+                title: 'paymentHistory'.tr(),
+                description: context.tr('paymentSubTitle'),
                 iconsData: Icons.payment,
               ),
               const SizedBox(
                 height: 15.0,
               ),
               CardItem(
-                title: "Languages",
-                description: "Help you more with your language",
+                title: context.tr('languages'),
+                description: context.tr('languagesSubTitle'),
                 iconsData: Icons.language_rounded,
                 trailingEvent: () {
                   showModalBottomSheet(
@@ -93,21 +93,22 @@ class _SettingPageState extends State<SettingPage> {
                 height: 15.0,
               ),
               CardItem(
-                title: "Theme Mode",
-                description: "Selcet your theme mode",
+                title: context.tr('themeMode'),
+                description: context.tr('themeModeSubTitle'),
                 iconsData: Icons.sunny,
                 trailingEvent: () => showModalBottomSheet(
-                    context: context,
-                    builder: (BuildContext context) {
-                      return const ThemeModeSelect();
-                    }),
+                  context: context,
+                  builder: (BuildContext context) {
+                    return const ThemeModeSelect();
+                  },
+                ),
               ),
               const SizedBox(
                 height: 15.0,
               ),
               CardItem(
-                title: "About us",
-                description: "Who kh online shop?",
+                title: context.tr('aboutUs'),
+                description: context.tr('aboutUsSubTilte'),
                 iconsData: Icons.info_rounded,
                 trailingEvent: () {},
               ),
@@ -120,7 +121,7 @@ class _SettingPageState extends State<SettingPage> {
               ),
               Center(
                 child: Text(
-                    "App version : ${myPackageData['version'].toString()}"),
+                    "${context.tr('appVersion')} : ${myPackageData['version'].toString()}"),
               ),
               const SizedBox(
                 height: 10.0,

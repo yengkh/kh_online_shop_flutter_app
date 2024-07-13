@@ -1,3 +1,4 @@
+import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
 
@@ -6,6 +7,12 @@ class SearchProductByBraandShimmer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // Get current theme mode
+    final themeMode = AdaptiveTheme.of(context).mode;
+    // Determine active color based on theme mode
+    final activeColor = themeMode == AdaptiveThemeMode.dark
+        ? Colors.grey.shade700
+        : Colors.white;
     return Column(
       children: [
         const SizedBox(
@@ -66,7 +73,7 @@ class SearchProductByBraandShimmer extends StatelessWidget {
                 margin: const EdgeInsets.all(5.0),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(5.0),
-                  color: Colors.white,
+                  color: activeColor,
                 ),
               );
             },

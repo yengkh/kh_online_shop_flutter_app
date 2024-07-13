@@ -3,6 +3,8 @@ import 'package:get/get.dart';
 import 'package:kh_online_shop_app_flutter/material/state_magement/add_product_to_favorite_controller.dart';
 import 'package:kh_online_shop_app_flutter/screens/cart_pages/item_text.dart';
 import 'package:kh_online_shop_app_flutter/screens/cart_pages/text_button_item.dart';
+import "package:easy_localization/easy_localization.dart" as easy_localization;
+import 'package:kh_online_shop_app_flutter/translations/locale_key.g.dart';
 
 class FavoritePage extends StatelessWidget {
   FavoritePage({super.key});
@@ -13,14 +15,13 @@ class FavoritePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          "Favorite Product",
-          style: TextStyle(color: Colors.grey.shade700),
+          easy_localization.tr(LocaleKeys.favoriteProduct),
         ),
       ),
       body: Obx(
         () {
           if (controllerFavorite.productItems.isEmpty) {
-            return const Center(child: Text('Your favorite is empty.'));
+            return Center(child: Text(context.tr('yourFavoriteIsEmpty')));
           }
           return GlowingOverscrollIndicator(
             axisDirection: AxisDirection.down,
@@ -54,16 +55,16 @@ class FavoritePage extends StatelessWidget {
                               child: Column(
                                 children: [
                                   ItemText(
-                                    title: 'Name ',
+                                    title: '${context.tr("name")} ',
                                     title2: product.name,
                                   ),
                                   ItemText(
-                                    title: 'Price ',
+                                    title: '${context.tr("price")} ',
                                     title2:
                                         '\$${product.price.toStringAsFixed(2)}',
                                   ),
                                   ItemText(
-                                    title: 'Brand ',
+                                    title: '${context.tr("brand")} ',
                                     title2: product.brand,
                                   ),
                                   Padding(
@@ -76,20 +77,20 @@ class FavoritePage extends StatelessWidget {
                                         TextButtonItem(
                                           color: const Color.fromARGB(
                                               255, 206, 36, 75),
-                                          title: 'Remove',
+                                          title: context.tr("remove"),
                                           onTapEvent: () {
                                             controllerFavorite.productItems
                                                 .removeAt(index);
                                             Get.snackbar(
-                                              "Remove from cart!",
-                                              "Product ${product.name} removed from cart.",
+                                              context.tr('removeFromFavorite'),
+                                              "${context.tr('product')} ${product.name} ${context.tr('removeFromFavorite1')}",
                                             );
                                           },
                                         ),
                                         TextButtonItem(
                                           color: const Color.fromARGB(
                                               255, 7, 150, 64),
-                                          title: 'Add To Cart',
+                                          title: context.tr('addToCart'),
                                           onTapEvent: () {},
                                         ),
                                       ],

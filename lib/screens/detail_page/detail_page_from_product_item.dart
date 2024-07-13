@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:kh_online_shop_app_flutter/screens/detail_page/add_to_cart_bottom_widget.dart';
@@ -95,15 +96,16 @@ class _DetailPageFromProductItemState extends State<DetailPageFromProductItem> {
                   children: [
                     widget.productQuantity != 0
                         ? Text(
-                            'In Stock : ',
+                            '${context.tr('inStock')} : ',
                             style: TextStyle(color: Colors.green.shade700),
                           )
                         : Text(
-                            'Out Of Stock',
+                            context.tr('outOfStock'),
                             style: TextStyle(color: Colors.red.shade700),
                           ),
                     widget.productQuantity != 0
-                        ? Text('${widget.productQuantity} Items Left')
+                        ? Text(
+                            '${widget.productQuantity} ${context.tr('itemLeft')}')
                         : const Text(''),
                   ],
                 ),
@@ -115,9 +117,9 @@ class _DetailPageFromProductItemState extends State<DetailPageFromProductItem> {
                 padding: const EdgeInsets.symmetric(horizontal: 20.0),
                 child: Row(
                   children: [
-                    const Text(
-                      'Brand : ',
-                      style: TextStyle(
+                    Text(
+                      '${context.tr('brand')} : ',
+                      style: const TextStyle(
                         fontSize: 18.0,
                       ),
                     ),
@@ -141,11 +143,12 @@ class _DetailPageFromProductItemState extends State<DetailPageFromProductItem> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          const Padding(
-                            padding: EdgeInsets.symmetric(horizontal: 20.0),
+                          Padding(
+                            padding:
+                                const EdgeInsets.symmetric(horizontal: 20.0),
                             child: Text(
-                              'Size',
-                              style: TextStyle(fontSize: 18.0),
+                              context.tr('size'),
+                              style: const TextStyle(fontSize: 18.0),
                             ),
                           ),
                           const SizedBox(
@@ -176,14 +179,14 @@ class _DetailPageFromProductItemState extends State<DetailPageFromProductItem> {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Padding(
-                    padding: EdgeInsets.only(
+                  Padding(
+                    padding: const EdgeInsets.only(
                       left: 20.0,
                       top: 20.0,
                     ),
                     child: Text(
-                      'Similar products you may like',
-                      style: TextStyle(fontSize: 18.0),
+                      context.tr('similarProductText'),
+                      style: const TextStyle(fontSize: 18.0),
                     ),
                   ),
                   const SizedBox(

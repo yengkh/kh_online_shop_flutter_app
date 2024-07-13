@@ -24,13 +24,9 @@ class TopPositionOfDetailPage extends StatelessWidget {
       bottom: bottomPosition,
       child: GestureDetector(
         onTap: onTapEvent,
-        child: Container(
+        child: SizedBox(
           height: 40.0,
           width: 40.0,
-          decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(50.0),
-          ),
           child: Center(
             child: childOfItem,
           ),

@@ -22,7 +22,6 @@ class CardItem extends StatelessWidget {
       child: SizedBox(
         width: MediaQuery.of(context).size.width,
         child: Card(
-          color: Colors.grey.shade200,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(5.0),
           ),

@@ -6,6 +6,7 @@ import 'package:kh_online_shop_app_flutter/widgets/home_page/home_page_items.dar
 import 'package:kh_online_shop_app_flutter/widgets/home_page/home_page_top_products.dart';
 import 'package:kh_online_shop_app_flutter/widgets/home_page/icon_with_text_widget.dart';
 import 'package:kh_online_shop_app_flutter/widgets/home_page/product_categories_widget.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -25,43 +26,43 @@ class _HomePageState extends State<HomePage> {
       body: GlowingOverscrollIndicator(
         axisDirection: AxisDirection.down,
         color: Colors.grey.shade400,
-        child: const SingleChildScrollView(
+        child: SingleChildScrollView(
           child: Column(
             children: [
-              SizedBox(
+              const SizedBox(
                 height: 20.0,
               ),
-              HomePageCarocelSlider(),
-              SizedBox(
+              const HomePageCarocelSlider(),
+              const SizedBox(
                 height: 20.0,
               ),
               IconWithTextWidget(
                 iconData: Icons.star_rounded,
-                title: "Popular Brands",
+                title: context.tr('popularBrand'),
               ),
-              HomePageBrandList(),
-              SizedBox(
+              const HomePageBrandList(),
+              const SizedBox(
                 height: 20.0,
               ),
               IconWithTextWidget(
                 iconData: Icons.list_alt_rounded,
-                title: "Product Categories",
+                title: context.tr('popularCategory'),
               ),
-              ProducctCategoriesWidget(),
+              const ProducctCategoriesWidget(),
               IconWithTextWidget(
                 iconData: Icons.star_rounded,
-                title: "Top Products Of The Month",
+                title: context.tr('topProductOfTheMounth'),
               ),
-              HomePageTopProducts(),
-              SizedBox(
+              const HomePageTopProducts(),
+              const SizedBox(
                 height: 10.0,
               ),
               IconWithTextWidget(
                 iconData: Icons.search_rounded,
-                title: "Explore More",
+                title: context.tr('exploreMore'),
               ),
-              HomePageItems(),
-              SizedBox(
+              const HomePageItems(),
+              const SizedBox(
                 height: 50.0,
               ),
             ],

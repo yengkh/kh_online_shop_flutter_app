@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:kh_online_shop_app_flutter/material/state_magement/add_to_cart_controller.dart';
 import 'package:kh_online_shop_app_flutter/screens/cart_pages/item_text.dart';
 import 'package:kh_online_shop_app_flutter/screens/cart_pages/text_button_item.dart';
+import "package:easy_localization/easy_localization.dart";
 
 class CartPage extends StatelessWidget {
   CartPage({super.key});
@@ -13,14 +14,13 @@ class CartPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          'Your Cart',
-          style: TextStyle(color: Colors.grey.shade700),
+          context.tr('yourCart'),
         ),
       ),
       body: Obx(
         () {
           if (controllerCart.addToCartItem.isEmpty) {
-            return const Center(child: Text('Your cart is empty.'));
+            return Center(child: Text(context.tr('emptyCart')));
           }
           return GlowingOverscrollIndicator(
             axisDirection: AxisDirection.down,
@@ -52,13 +52,13 @@ class CartPage extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 ItemText(
-                                  title: 'Name',
+                                  title: '${context.tr('name')} ',
                                   title2: product.name,
                                 ),
                                 const SizedBox(height: 3.0),
                                 Obx(
                                   () => ItemText(
-                                    title: 'Price',
+                                    title: '${context.tr('price')} ',
                                     title2:
                                         '\$${product.totalPrice.value.toStringAsFixed(2)}',
                                   ),
@@ -67,7 +67,7 @@ class CartPage extends StatelessWidget {
                                   children: [
                                     Obx(
                                       () => ItemText(
-                                        title: 'Quantity',
+                                        title: '${context.tr('quantity')} ',
                                         title2:
                                             product.quantity.value.toString(),
                                       ),
@@ -99,7 +99,7 @@ class CartPage extends StatelessWidget {
                                   ],
                                 ),
                                 ItemText(
-                                  title: 'Brand',
+                                  title: '${context.tr('brand')} ',
                                   title2: product.productbrand,
                                 ),
                                 const SizedBox(height: 10.0),
@@ -107,21 +107,21 @@ class CartPage extends StatelessWidget {
                                   children: [
                                     const SizedBox(width: 15.0),
                                     TextButtonItem(
-                                      title: 'Remove',
+                                      title: context.tr('remove'),
                                       color: const Color.fromARGB(
                                           255, 206, 36, 75),
                                       onTapEvent: () {
                                         controllerCart.addToCartItem
                                             .removeAt(index);
                                         Get.snackbar(
-                                          'Product Removed',
-                                          '${product.name} removed from cart',
+                                          context.tr('productRemove'),
+                                          '${product.name} ${context.tr('removeFromCart')}',
                                         );
                                       },
                                     ),
                                     const SizedBox(width: 30.0),
                                     TextButtonItem(
-                                      title: 'Check Out',
+                                      title: context.tr('checkOut'),
                                       color:
                                           const Color.fromARGB(255, 7, 150, 64),
                                       onTapEvent: () {},
@@ -165,6 +165,7 @@ class RemoveOrAdd extends StatelessWidget {
       ),
       child: Icon(
         iconData,
+        color: Colors.grey.shade700,
       ),
     );
   }

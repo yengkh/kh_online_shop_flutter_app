@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 class LogOutButton extends StatelessWidget {
@@ -14,17 +15,17 @@ class LogOutButton extends StatelessWidget {
           backgroundColor: WidgetStatePropertyAll(Colors.blue),
         ),
         onPressed: () {},
-        child: const Row(
+        child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              'Log Out',
-              style: TextStyle(color: Colors.white),
+              context.tr('logOut'),
+              style: const TextStyle(color: Colors.white),
             ),
-            SizedBox(
+            const SizedBox(
               width: 15.0,
             ),
-            Icon(Icons.logout_rounded, color: Colors.white),
+            const Icon(Icons.logout_rounded, color: Colors.white),
           ],
         ),
       ),

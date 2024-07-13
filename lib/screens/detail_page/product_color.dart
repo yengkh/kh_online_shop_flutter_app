@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:kh_online_shop_app_flutter/screens/detail_page/product_color_item.dart';
+import "package:easy_localization/easy_localization.dart";
 
 class ProductColor extends StatelessWidget {
   const ProductColor({
@@ -8,8 +9,8 @@ class ProductColor extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Padding(
-      padding: EdgeInsets.symmetric(
+    return Padding(
+      padding: const EdgeInsets.symmetric(
         horizontal: 20.0,
         vertical: 10.0,
       ),
@@ -17,45 +18,45 @@ class ProductColor extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'Color',
-            style: TextStyle(
+            context.tr('color'),
+            style: const TextStyle(
               fontSize: 18.0,
               fontWeight: FontWeight.bold,
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 10,
           ),
           Row(
             children: [
               ProductColorItem(
                 itemHeight: 30.0,
-                itemWidth: 60.0,
-                itemTitle: "White",
+                itemWidth: 65.0,
+                itemTitle: context.tr('white'),
               ),
-              SizedBox(
+              const SizedBox(
                 width: 15.0,
               ),
               ProductColorItem(
                 itemHeight: 30.0,
-                itemWidth: 60.0,
-                itemTitle: "Black",
+                itemWidth: 65.0,
+                itemTitle: context.tr('black'),
               ),
-              SizedBox(
+              const SizedBox(
                 width: 15.0,
               ),
               ProductColorItem(
                 itemHeight: 30.0,
-                itemWidth: 60.0,
-                itemTitle: "Blue",
+                itemWidth: 65.0,
+                itemTitle: context.tr('blue'),
               ),
-              SizedBox(
+              const SizedBox(
                 width: 15.0,
               ),
               ProductColorItem(
                 itemHeight: 30.0,
-                itemWidth: 60.0,
-                itemTitle: "Red",
+                itemWidth: 70.0,
+                itemTitle: context.tr('red'),
               ),
             ],
           ),

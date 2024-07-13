@@ -25,11 +25,13 @@ class MinusOrAddWidget extends StatelessWidget {
           children: [
             const Text(
               'Total Price : ',
-              style: TextStyle(fontSize: 16.0, color: Colors.white),
+              //style: TextStyle(fontSize: 16.0, color: Colors.white),
             ),
             Obx(() => Text(
-                  addProductTo.totalPrice.value.toStringAsFixed(2),
-                  style: const TextStyle(fontSize: 16.0, color: Colors.white),
+                  "\$${addProductTo.totalPrice.value.toStringAsFixed(2)}",
+                  style: const TextStyle(
+                    fontSize: 16.0,
+                  ),
                 )),
           ],
         ),
@@ -44,7 +46,9 @@ class MinusOrAddWidget extends StatelessWidget {
             ),
             Obx(() => Text(
                   addProductTo.quantity.value.toString(),
-                  style: const TextStyle(fontSize: 16.0, color: Colors.white),
+                  style: const TextStyle(
+                    fontSize: 16.0,
+                  ),
                 )),
             const SizedBox(
               width: 8.0,

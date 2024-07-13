@@ -1,3 +1,5 @@
+import 'package:adaptive_theme/adaptive_theme.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
@@ -17,6 +19,11 @@ class ProductItemDetail extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // Get current theme mode
+    final themeMode = AdaptiveTheme.of(context).mode;
+    // Determine active color based on theme mode
+    final activeColor =
+        themeMode == AdaptiveThemeMode.dark ? Colors.white : Colors.black;
     return Container(
       padding: const EdgeInsets.all(8.0),
       child: Column(
@@ -24,22 +31,22 @@ class ProductItemDetail extends StatelessWidget {
         children: [
           RowTextWidget(
             productName: widget.productName,
-            title: 'Name : ',
+            title: '${context.tr('name')} : ',
           ),
           RowTextWidget(
             productName: '\$${widget.productPrice}',
-            title: 'Price : ',
+            title: '${context.tr('price')} : ',
             textStyleItems: productRAting['discount_rate'] != 0
                 ? const TextStyle(
                     color: Colors.amber,
                   )
-                : const TextStyle(
-                    color: Colors.black,
+                : TextStyle(
+                    color: activeColor,
                   ),
           ),
           RowTextWidget(
             productName: widget.productBrand,
-            title: 'Brand : ',
+            title: '${context.tr('brand')} : ',
           ),
           const SizedBox(
             height: 8.0,

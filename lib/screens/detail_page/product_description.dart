@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class DescriptionPath extends StatelessWidget {
   const DescriptionPath({
@@ -14,9 +15,9 @@ class DescriptionPath extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text(
-            'Description',
-            style: TextStyle(fontSize: 18.0),
+          Text(
+            context.tr('description'),
+            style: const TextStyle(fontSize: 18.0),
           ),
           Text(
             productDescription,

@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:kh_online_shop_app_flutter/screens/detail_page/product_review_item.dart';
 import 'package:kh_online_shop_app_flutter/screens/detail_page/read_more_button.dart';
@@ -17,8 +18,8 @@ class ProductReviewPath extends StatelessWidget {
         children: [
           Text(
             productReview['comment_total'] == 0
-                ? "Reviews (0)"
-                : "Reviews (${productReview['comment_total']})",
+                ? "${context.tr('review')} (0)"
+                : "${context.tr('review')} (${productReview['comment_total']})",
             style: const TextStyle(
               fontSize: 18.0,
             ),
@@ -40,8 +41,8 @@ class ProductReviewPath extends StatelessWidget {
           ),
           GestureDetector(
             onTap: () {},
-            child: const ReadMoreButton(
-              title: "Write Comment",
+            child: ReadMoreButton(
+              title: context.tr('writeComment'),
               iconDta: Icons.arrow_drop_down_rounded,
             ),
           ),
@@ -49,8 +50,8 @@ class ProductReviewPath extends StatelessWidget {
             onTap: () {},
             child: productReview['comment_total'] == 0
                 ? const SizedBox()
-                : const ReadMoreButton(
-                    title: "View More",
+                : ReadMoreButton(
+                    title: context.tr('viewMore'),
                     iconDta: Icons.arrow_drop_down_rounded,
                   ),
           ),

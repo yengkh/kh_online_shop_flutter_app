@@ -1,3 +1,4 @@
+import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get_core/src/get_main.dart';
@@ -11,6 +12,7 @@ import 'package:kh_online_shop_app_flutter/widgets/home_page/product_child_item.
 import 'package:kh_online_shop_app_flutter/widgets/more_widget/arrow_back_widget.dart';
 import 'package:kh_online_shop_app_flutter/widgets/more_widget/has_error_widget.dart';
 import 'package:kh_online_shop_app_flutter/widgets/more_widget/no_data_widget.dart';
+import "package:easy_localization/easy_localization.dart";
 
 class ViewProductByBrand extends StatefulWidget {
   const ViewProductByBrand({
@@ -28,6 +30,12 @@ class ViewProductByBrand extends StatefulWidget {
 class _ViewProductByBrandState extends State<ViewProductByBrand> {
   @override
   Widget build(BuildContext context) {
+    // Get current theme mode
+    final themeMode = AdaptiveTheme.of(context).mode;
+    // Determine active color based on theme mode
+    final activeColor = themeMode == AdaptiveThemeMode.dark
+        ? Colors.grey.shade700
+        : Colors.white;
     return Scaffold(
       appBar: AppBar(
         leading: const ArrowBackWidget(),
@@ -73,9 +81,9 @@ class _ViewProductByBrandState extends State<ViewProductByBrand> {
                   const SizedBox(
                     height: 20.0,
                   ),
-                  const Text(
-                    "Find The relate products ",
-                    style: TextStyle(fontSize: 18.0),
+                  Text(
+                    context.tr('findTheRelateProduct'),
+                    style: const TextStyle(fontSize: 18.0),
                   ),
                   const SizedBox(
                     height: 30.0,
@@ -98,7 +106,7 @@ class _ViewProductByBrandState extends State<ViewProductByBrand> {
                         margin: const EdgeInsets.all(5.0),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(5.0),
-                          color: Colors.white,
+                          color: activeColor,
                           boxShadow: [
                             boxShadowWidget(),
                           ],

@@ -17,7 +17,6 @@ class IconButtonWidget extends StatelessWidget {
       icon: Icon(
         iconData,
         size: 25.0,
-        color: Colors.grey.shade700,
       ),
     );
   }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import "package:easy_localization/easy_localization.dart";
 
 class ShareBottomShett extends StatelessWidget {
   const ShareBottomShett({
@@ -17,9 +18,9 @@ class ShareBottomShett extends StatelessWidget {
           const SizedBox(
             height: 20.0,
           ),
-          const Text(
-            'Share product to the world!',
-            style: TextStyle(fontSize: 16.0),
+          Text(
+            context.tr('shareProductToTheWorld'),
+            style: const TextStyle(fontSize: 16.0),
           ),
           const SizedBox(
             height: 20.0,

@@ -1,3 +1,4 @@
+import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -34,6 +35,12 @@ class _TopImagePathState extends State<TopImagePath> {
 
   @override
   Widget build(BuildContext context) {
+    // Get current theme mode
+    final themeMode = AdaptiveTheme.of(context).mode;
+    // Determine active color based on theme mode
+    final activeColor = themeMode == AdaptiveThemeMode.dark
+        ? Colors.grey.shade400
+        : Colors.white;
     return Stack(
       children: [
         GlowingOverscrollIndicator(
@@ -54,7 +61,13 @@ class _TopImagePathState extends State<TopImagePath> {
                 builder: (BuildContext context) {
                   return Container(
                     width: MediaQuery.of(context).size.width,
-                    decoration: const BoxDecoration(color: Colors.white),
+                    decoration: BoxDecoration(
+                      color: activeColor,
+                      borderRadius: const BorderRadius.only(
+                        bottomLeft: Radius.circular(20.0),
+                        bottomRight: Radius.circular(20.0),
+                      ),
+                    ),
                     child: Padding(
                       padding: const EdgeInsets.only(
                         left: 50.0,

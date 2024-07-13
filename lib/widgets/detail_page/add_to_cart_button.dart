@@ -1,3 +1,4 @@
+import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:kh_online_shop_app_flutter/material/state_magement/add_to_cart_controller.dart';
@@ -18,6 +19,12 @@ class AddToCartButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // Get current theme mode
+    final themeMode = AdaptiveTheme.of(context).mode;
+    // Determine active color based on theme mode
+    final activeColor = themeMode == AdaptiveThemeMode.dark
+        ? Colors.grey.shade700
+        : Colors.white;
     return GestureDetector(
       onTap: () {
         var product = AddProductToCartModel(
@@ -34,9 +41,9 @@ class AddToCartButton extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 15.0),
         height: 40.0,
         width: 250.0,
-        decoration: const BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.all(
+        decoration: BoxDecoration(
+          color: activeColor,
+          borderRadius: const BorderRadius.all(
             Radius.circular(5.0),
           ),
         ),

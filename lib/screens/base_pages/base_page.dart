@@ -1,3 +1,4 @@
+import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:kh_online_shop_app_flutter/material/bottom_nav_icons_list/bttom_nav_icons_list.dart';
@@ -15,10 +16,19 @@ int _currentIndex = 0;
 class _BasePageState extends State<BasePage> {
   @override
   Widget build(BuildContext context) {
+    // Get current theme mode
+    final themeMode = AdaptiveTheme.of(context).mode;
+    // Determine active color based on theme mode
+    final activeColor = themeMode == AdaptiveThemeMode.dark
+        ? Colors.grey.shade700
+        : Colors.white;
     return Scaffold(
       body: BodyPage.body[_currentIndex],
       bottomNavigationBar: AnimatedBottomNavigationBar(
-        inactiveColor: Colors.grey.shade700,
+        backgroundColor: activeColor,
+        inactiveColor: themeMode == AdaptiveThemeMode.dark
+            ? Colors.white70
+            : Colors.grey.shade600,
         activeColor: Colors.pink,
         elevation: 0.0,
         icons: BttomNavIconsList.iconList,

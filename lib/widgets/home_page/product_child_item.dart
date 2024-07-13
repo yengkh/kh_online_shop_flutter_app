@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:kh_online_shop_app_flutter/material/state_magement/add_product_to_favorite_controller.dart';
@@ -62,8 +63,8 @@ class _ProductChildItemState extends State<ProductChildItem> {
               );
               controllerFavorite.addToFavorite(product);
               Get.snackbar(
-                "Add To Favorite!",
-                'Product ${widget.productName} added to favorite!',
+                context.tr('addToFavorite'),
+                '${context.tr('product')} ${widget.productName} ${context.tr('addedToFavorite')}',
               );
             },
             icon: const Icon(Icons.favorite_outline_rounded),

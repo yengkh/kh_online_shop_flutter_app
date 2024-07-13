@@ -1,3 +1,4 @@
+import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:kh_online_shop_app_flutter/apis/search_product_by_type_api.dart';
@@ -44,6 +45,12 @@ class _SimilarProductState extends State<SimilarProduct> {
 
   @override
   Widget build(BuildContext context) {
+    // Get current theme mode
+    final themeMode = AdaptiveTheme.of(context).mode;
+    // Determine active color based on theme mode
+    final activeColor = themeMode == AdaptiveThemeMode.dark
+        ? Colors.grey.shade700
+        : Colors.white;
     if (_isLoading) {
       return const Center(
         child: CircularProgressIndicator(),
@@ -72,7 +79,7 @@ class _SimilarProductState extends State<SimilarProduct> {
                 margin: const EdgeInsets.all(5.0),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(5.0),
-                  color: Colors.white,
+                  color: activeColor,
                   boxShadow: [
                     boxShadowWidget(),
                   ],

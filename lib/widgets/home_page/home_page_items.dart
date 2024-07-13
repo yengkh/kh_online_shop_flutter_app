@@ -1,3 +1,5 @@
+import 'package:adaptive_theme/adaptive_theme.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/get_navigation.dart';
@@ -15,6 +17,12 @@ class HomePageItems extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // Get current theme mode
+    final themeMode = AdaptiveTheme.of(context).mode;
+    // Determine active color based on theme mode
+    final activeColor = themeMode == AdaptiveThemeMode.dark
+        ? Colors.grey.shade700
+        : Colors.white;
     return FutureBuilder<List<ProductItemModel>>(
       future: ProductItemAPI.getData(),
       builder: (context, snapshot) {
@@ -49,9 +57,9 @@ class HomePageItems extends StatelessWidget {
                       height: 120.0,
                       fit: BoxFit.cover,
                     ),
-                    const Text(
-                      'Can not get data!',
-                      style: TextStyle(fontSize: 12.0),
+                    Text(
+                      context.tr('canNotGetData'),
+                      style: const TextStyle(fontSize: 12.0),
                     ),
                   ],
                 ),
@@ -59,8 +67,8 @@ class HomePageItems extends StatelessWidget {
             },
           );
         } else if (snapshot.data == null || snapshot.data!.isEmpty) {
-          return const Center(
-            child: Text('No data available'),
+          return Center(
+            child: Text(context.tr('dataNotAvialable')),
           );
         } else {
           final datas = snapshot.data!;
@@ -80,7 +88,7 @@ class HomePageItems extends StatelessWidget {
                 margin: const EdgeInsets.all(5.0),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(5.0),
-                  color: Colors.white,
+                  color: activeColor,
                   boxShadow: [
                     boxShadowWidget(),
                   ],

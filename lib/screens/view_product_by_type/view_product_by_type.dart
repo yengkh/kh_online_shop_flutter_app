@@ -1,3 +1,5 @@
+import 'package:adaptive_theme/adaptive_theme.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/get_navigation.dart';
@@ -68,6 +70,12 @@ class _ViewProductByTypeState extends State<ViewProductByType> {
 
   @override
   Widget build(BuildContext context) {
+    // Get current theme mode
+    final themeMode = AdaptiveTheme.of(context).mode;
+    // Determine active color based on theme mode
+    final activeColor = themeMode == AdaptiveThemeMode.dark
+        ? Colors.grey.shade700
+        : Colors.white;
     return Scaffold(
       appBar: AppBar(
         leading: const ArrowBackWidget(),
@@ -100,9 +108,12 @@ class _ViewProductByTypeState extends State<ViewProductByType> {
                     const SizedBox(
                       height: 30.0,
                     ),
-                    Text(
-                      "Find more product relate to ${widget.productType}",
-                      style: const TextStyle(fontSize: 18.0),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                      child: Text(
+                        "${context.tr('findMoreProductRelateTo')} ${widget.productType}",
+                        style: const TextStyle(fontSize: 18.0),
+                      ),
                     ),
                     const SizedBox(
                       height: 10.0,
@@ -123,7 +134,7 @@ class _ViewProductByTypeState extends State<ViewProductByType> {
                         return Container(
                           margin: const EdgeInsets.all(5.0),
                           decoration: BoxDecoration(
-                            color: Colors.grey.shade200,
+                            color: activeColor,
                             borderRadius: BorderRadius.circular(5.0),
                           ),
                           child: GestureDetector(

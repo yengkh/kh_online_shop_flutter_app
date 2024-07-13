@@ -1,4 +1,7 @@
+import 'package:easy_localization/easy_localization.dart' as easy_localization;
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:kh_online_shop_app_flutter/translations/locale_key.g.dart';
 
 enum SingingCharacter { english, khmer }
 
@@ -12,13 +15,44 @@ class ProfileBottomSheet extends StatefulWidget {
 }
 
 class _ProfileBottomSheetState extends State<ProfileBottomSheet> {
-  SingingCharacter? _character = SingingCharacter.english;
+  SingingCharacter? _character;
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    _initializeSelectedLanguage();
+  }
+
+  void _initializeSelectedLanguage() {
+    final currentLocale = context.locale;
+    setState(() {
+      if (currentLocale.languageCode == 'en') {
+        _character = SingingCharacter.english;
+      } else if (currentLocale.languageCode == 'km') {
+        _character = SingingCharacter.khmer;
+      }
+    });
+  }
+
+  Future<void> _changeLanguage(SingingCharacter? value) async {
+    setState(() {
+      _character = value;
+    });
+
+    if (value == SingingCharacter.english) {
+      await context.setLocale(const Locale('en'));
+      Get.updateLocale(const Locale('en'));
+    } else if (value == SingingCharacter.khmer) {
+      await context.setLocale(const Locale('km'));
+      Get.updateLocale(const Locale('km'));
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(
-        color: Colors.grey.shade300,
-        borderRadius: const BorderRadius.only(
+      decoration: const BoxDecoration(
+        borderRadius: BorderRadius.only(
           topLeft: Radius.circular(20.0),
           topRight: Radius.circular(20.0),
         ),
@@ -48,9 +82,9 @@ class _ProfileBottomSheetState extends State<ProfileBottomSheet> {
             const SizedBox(
               height: 20.0,
             ),
-            const Text(
-              "Please select your language",
-              style: TextStyle(fontSize: 16.0),
+            Text(
+              easy_localization.tr(LocaleKeys.pleaseSelectLanguage),
+              style: const TextStyle(fontSize: 16.0),
             ),
             ListTile(
               leading: Image.asset(
@@ -58,17 +92,15 @@ class _ProfileBottomSheetState extends State<ProfileBottomSheet> {
                 height: 30.0,
                 width: 50.0,
               ),
-              title: const Text(
-                "English",
-                style: TextStyle(fontSize: 14.0),
+              title: Text(
+                easy_localization.tr(LocaleKeys.english),
+                style: const TextStyle(fontSize: 14.0),
               ),
               trailing: Radio<SingingCharacter>(
                 value: SingingCharacter.english,
                 groupValue: _character,
-                onChanged: (SingingCharacter? value) {
-                  setState(() {
-                    _character = value;
-                  });
+                onChanged: (value) {
+                  _changeLanguage(value);
                 },
               ),
             ),
@@ -79,17 +111,15 @@ class _ProfileBottomSheetState extends State<ProfileBottomSheet> {
                 width: 50.0,
                 fit: BoxFit.cover,
               ),
-              title: const Text(
-                "Khmer",
-                style: TextStyle(fontSize: 14.0),
+              title: Text(
+                easy_localization.tr(LocaleKeys.khmer),
+                style: const TextStyle(fontSize: 14.0),
               ),
               trailing: Radio<SingingCharacter>(
                 value: SingingCharacter.khmer,
                 groupValue: _character,
-                onChanged: (SingingCharacter? value) {
-                  setState(() {
-                    _character = value;
-                  });
+                onChanged: (value) {
+                  _changeLanguage(value);
                 },
               ),
             ),
